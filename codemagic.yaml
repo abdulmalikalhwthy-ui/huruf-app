@@ -21,7 +21,7 @@ workflows:
           cordova platform add ios
       - name: Build iOS
         script: |
-          cordova build ios --release --device --no-telemetry
+          cordova build ios --release --device --no-telemetry -- CODE_SIGNING_ALLOWED=NO
     artifacts:
       - platforms/ios/build/device/*.ipa
       - platforms/ios/build/device/*.app
