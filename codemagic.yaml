@@ -19,18 +19,15 @@ workflows:
       - name: Add iOS Platform
         script: |
           cordova platform add ios
-      - name: Build iOS (Unsigned Archive)
+      - name: Build iOS (Direct Unsigned Build)
         script: |
           cd platforms/ios
-          xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos -archivePath App.xcarchive CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_ENTITLEMENTS="" archive
+          xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_ENTITLEMENTS=""
       - name: Create Unsigned IPA
         script: |
-          cd platforms/ios
-          xcodebuild -exportArchive -archivePath App.xcarchive -exportPath ./build/device -exportOptionsPlist /dev/null
-          # Alternative manual method to create IPA
-          mkdir -p ./build/device/Payload
-          cp -r App.xcarchive/Products/Applications/App.app ./build/device/Payload/
-          cd ./build/device
+          cd platforms/ios/build/Build/Products/Release-iphoneos
+          mkdir -p Payload
+          cp -r App.app Payload/
           zip -r App.ipa Payload
     artifacts:
-      - platforms/ios/build/device/*.ipa
+      - platforms/ios/build/Build/Products/Release-iphoneos/*.ipa
