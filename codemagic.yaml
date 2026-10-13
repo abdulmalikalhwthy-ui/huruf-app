@@ -23,5 +23,5 @@ workflows:
         script: |
           cordova build ios --release --no-telemetry
     artifacts:
-      - build/ios/iphoneos/*.ipa
-      - build/ios/iphoneos/*.app
+      - platforms/ios/build/device/*.ipa
+      - platforms/ios/build/device/*.app
