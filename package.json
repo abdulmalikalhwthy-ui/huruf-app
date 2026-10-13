@@ -1,0 +1,22 @@
+{
+  "name": "huruf-app",
+  "displayName": "أسرار علم الحروف",
+  "version": "1.0.2",
+  "description": "تطبيق علم الحروف والجفر وتفسير الأحلام",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "عبد الملك علي الحوثي",
+  "license": "ISC",
+  "dependencies": {
+    "cordova-ios": "^7.1.1",
+    "cordova-plugin-inappbrowser": "*"
+  },
+  "cordova": {
+    "platforms": ["ios"],
+    "plugins": {
+      "cordova-plugin-inappbrowser": {}
+    }
+  }
+}
